@@ -1,0 +1,22 @@
+{
+  "name": "tic-tac-toe",
+  "version": "0.0.0",
+  "description": "Tic-tac-toe game made using React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "webpack": "^1.12.6",
+    "babel-core": "^6.1.21",
+    "babel-loader": "^6.2.0",
+    "jsx-loader": "^0.13.2"
+  }
+}
