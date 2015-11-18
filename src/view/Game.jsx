@@ -13,7 +13,8 @@ class Game extends Component {
         this.state = {
             msg: 'Click on New Game',
             newGame: true,
-            currentPlayer: 1
+            currentPlayer: 1,
+            winner: false
         }
     }
 
@@ -23,29 +24,41 @@ class Game extends Component {
         })
     }
 
-    onPlay(lastPlayed) {
+    onPlay(lastPlayed, winner) {
         let currentPlayer;
         let msg;
 
-        if (lastPlayed === 1) {
-            currentPlayer = 2;
-            msg = 'Next turn: Player 2';
+        if (!winner) {
+            if (lastPlayed === 1) {
+                currentPlayer = 2;
+                msg = 'Next turn: Player 2';
 
+            } else {
+                currentPlayer = 1;
+                msg = 'Next turn: Player 1';
+            }
+            this.setState({
+                msg,
+                currentPlayer,
+                newGame: false
+            })
         } else {
-            currentPlayer = 1;
-            msg = 'Next turn: Player 1';
+            msg = `Player ${ lastPlayed } wins.`;
+            this.setState({
+                msg,
+                winner: true
+            })
         }
-        this.setState({
-            msg,
-            currentPlayer,
-            newGame: false
 
-        })
     }
 
     render() {
         const msg = this.state.msg;
         const newGame = this.state.newGame;
+        const winner = this.state.winner;
+        if (winner) {
+            console.log(msg);
+        }
         const currentPlayer = this.state.currentPlayer;
 
         const handleButtonClick = this.handleButtonClick.bind(this);
@@ -54,7 +67,7 @@ class Game extends Component {
         return (
             <div className="game">
                 <Notification msg={ msg }/>
-                <Grid newGame={ newGame } currentPlayer={ currentPlayer } onPlay={ onPlay }/>
+                <Grid newGame={ newGame } winner={ winner } currentPlayer={ currentPlayer } onPlay={ onPlay }/>
                 <button className="btn-new-game" onClick={ handleButtonClick }> New Game </button>
             </div>
         );
