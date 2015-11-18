@@ -12,13 +12,16 @@ class Square extends Component {
     render() {
         const userChoice = this.props.userChoice;
         const firstSquare = this.props.firstSquare;
+        const isDisabled = this.props.disable;
+        const onSquareClick = !isDisabled? this.props.onSquareClick: '';
+
         return (
             firstSquare ?
-                <div className="square square--first">
+                <div className="square square--first" onClick={ onSquareClick } >
                     { userChoice }
                 </div>
                 :
-                <div className="square">
+                <div className="square" onClick={ onSquareClick } >
                     { userChoice }
                 </div>
         );
