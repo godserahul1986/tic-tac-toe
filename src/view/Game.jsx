@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import Grid from './Grid.jsx';
 import Notification from './Notification.jsx';
 
+import '../styles/game.scss';
+
 class Game extends Component {
 
     constructor(...args) {
@@ -17,7 +19,7 @@ class Game extends Component {
             <div className="game">
                 <Notification msg={ msg }/>
                 <Grid />
-                <Button> New Game </Button>
+                <button className="btn-new-game"> New Game </button>
             </div>
         );
     }

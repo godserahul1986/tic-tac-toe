@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import '../styles/square.scss';
+
 class Square extends Component {
 
     constructor(...args) {
@@ -8,11 +10,11 @@ class Square extends Component {
     }
 
     render() {
-        const userChoice = 'X';
-        const isLastSquare = true;
+        const userChoice = this.props.userChoice;
+        const firstSquare = this.props.firstSquare;
         return (
-            isLastSquare ?
-                <div className="square square--last">
+            firstSquare ?
+                <div className="square square--first">
                     { userChoice }
                 </div>
                 :

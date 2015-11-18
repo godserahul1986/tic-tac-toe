@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import '../styles/notification.scss';
+
 class Notification extends Component {
 
     constructor(...args) {
@@ -10,9 +12,9 @@ class Notification extends Component {
     render() {
         const msg = this.props.msg;
         return (
-            <span className="notification">
+            <div className="notification">
                 { msg }
-            </span>
+            </div>
         );
     }
 }
