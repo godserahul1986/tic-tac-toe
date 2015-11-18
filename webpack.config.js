@@ -7,13 +7,16 @@ const config = {
 	},
 	module: {
 		loaders: [
-			{
-				test: /\.jsx$/,
-				exclude: /(node_modules)/,
-				loaders: [
-					'babel'
-				]
-			}
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules)/,
+                loaders: [ 'babel-loader?optional[]=runtime&stage=0' ]
+            },
+            {
+                test: /\.scss$/,
+                exclude: /(node_modules)/,
+                loaders: [ 'style', 'css', 'sass' ]
+            }
 		]
 	}
 };
