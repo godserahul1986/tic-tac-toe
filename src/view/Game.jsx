@@ -11,7 +11,7 @@ class Game extends Component {
     constructor(...args) {
         super(...args);
         this.state = {
-            msg: 'Click on New Game',
+            msg: 'Click on New Game to begin',
             newGame: true,
             currentPlayer: 1,
             winner: false
@@ -19,8 +19,11 @@ class Game extends Component {
     }
 
     handleButtonClick() {
+        const msg = 'Click on New Game to begin';
         this.setState({
-            newGame: true
+            newGame: true,
+            winner: false,
+            msg
         })
     }
 

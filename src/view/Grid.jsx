@@ -80,12 +80,12 @@ class Grid extends Component {
 
             if (i % 3 === 0) {
                 square = (
-                    <Square key={ i } onSquareClick={ onSquareClick } currentPlayer={ currentPlayer } userChoice={ userChoice } disable={ disable } firstSquare />
+                    <Square key={ i } onSquareClick={ onSquareClick } userChoice={ userChoice } disable={ disable } firstSquare />
                 );
                 squares.push(square);
             } else {
                 square = (
-                    <Square key={ i } onSquareClick={ onSquareClick } currentPlayer={ currentPlayer } userChoice={ userChoice } disable={ disable } />
+                    <Square key={ i } onSquareClick={ onSquareClick } userChoice={ userChoice } disable={ disable } />
                 );
                 squares.push(square);
             }

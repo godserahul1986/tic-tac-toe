@@ -14,15 +14,25 @@ class Square extends Component {
         const firstSquare = this.props.firstSquare;
         const isDisabled = this.props.disable;
         const onSquareClick = !isDisabled? this.props.onSquareClick: '';
+        const userChoiceElem = (
+            userChoice === 'X' ?
+                <span className="red-color">
+                    { userChoice }
+                </span>
+                :
+                <span className="green-color">
+                    { userChoice }
+                </span>
+        );
 
         return (
             firstSquare ?
                 <div className="square square--first" onClick={ onSquareClick } >
-                    { userChoice }
+                    { userChoiceElem }
                 </div>
                 :
                 <div className="square" onClick={ onSquareClick } >
-                    { userChoice }
+                    { userChoiceElem }
                 </div>
         );
     }
