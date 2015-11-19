@@ -14,7 +14,7 @@ class Game extends Component {
             msg: 'Click on New Game to begin',
             newGame: true,
             currentPlayer: 1,
-            winner: false
+            winner: ''
         }
     }
 
@@ -22,7 +22,7 @@ class Game extends Component {
         const msg = 'Click on New Game to begin';
         this.setState({
             newGame: true,
-            winner: false,
+            winner: '',
             msg
         })
     }
@@ -31,7 +31,7 @@ class Game extends Component {
         let currentPlayer;
         let msg;
 
-        if (!winner) {
+        if (winner === '') {
             if (lastPlayed === 1) {
                 currentPlayer = 2;
                 msg = 'Next turn: Player 2';
@@ -45,11 +45,17 @@ class Game extends Component {
                 currentPlayer,
                 newGame: false
             })
+        } else if (winner === -1) {
+            msg = 'Match draw.';
+            this.setState({
+                msg,
+                winner: lastPlayed
+            })
         } else {
             msg = `Player ${ lastPlayed } wins.`;
             this.setState({
                 msg,
-                winner: true
+                winner: lastPlayed
             })
         }
 
@@ -59,9 +65,6 @@ class Game extends Component {
         const msg = this.state.msg;
         const newGame = this.state.newGame;
         const winner = this.state.winner;
-        if (winner) {
-            console.log(msg);
-        }
         const currentPlayer = this.state.currentPlayer;
 
         const handleButtonClick = this.handleButtonClick.bind(this);

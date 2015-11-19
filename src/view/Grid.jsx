@@ -22,12 +22,12 @@ class Grid extends Component {
         this.setState({
             userChoices
         });
-        winner = this.checkWinner(userChoices);
+        winner = this.checkWinner(userChoices, currentPlayer);
         this.props.onPlay(currentPlayer, winner);
     }
 
-    checkWinner(userChoices) {
-        let winner = false;
+    checkWinner(userChoices, currentPlayer) {
+        let winner = '';
         let horizontalWin;
         let verticalWin;
         let diagonalWin;
@@ -35,28 +35,31 @@ class Grid extends Component {
         for (let i=0; i<9; i=i+3) {
             horizontalWin = userChoices.slice(i,i+2).join();
             if (horizontalWin === 'XXX' || horizontalWin === 'OOO') {
-                winner = true;
+                winner = currentPlayer;
             }
         }
         for (let i=0; i<3; i++) {
             verticalWin = userChoices[i] + userChoices[i+3] + userChoices[i+6];
             if (verticalWin === 'XXX' || verticalWin === 'OOO') {
-                winner = true;
+                winner = currentPlayer;
             }
             if (i===0) {
                 diagonalWin = userChoices[i] + userChoices[i+4] + userChoices[i+8];
                 if (diagonalWin === 'XXX' || diagonalWin === 'OOO') {
-                    winner = true;
+                    winner = currentPlayer;
                 }
             }
             if (i===2) {
                 diagonalWin = userChoices[i] + userChoices[i+2] + userChoices[i+4];
                 if (diagonalWin === 'XXX' || diagonalWin === 'OOO') {
-                    winner = true;
+                    winner = currentPlayer;
                 }
             }
         }
-        return winner;
+        const isDraw = winner === '' && _.every(userChoices, (choice) => {
+                return choice !== '';
+            });
+        return isDraw? -1 : winner;
     }
 
     getGrid(newGame, currentPlayer, winner) {
