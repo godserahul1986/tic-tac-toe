@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import _ from 'underscore';
 
 import Square from './Square.jsx';
 
@@ -10,76 +9,22 @@ class Grid extends Component {
 
     constructor(...args) {
         super(...args);
-        this.state = {
-            userChoices: ['', '', '', '', '', '', '', '', ''],
-        }
-    }
-
-    onSquareClick(currentPlayer, userChoices, clickedSquare) {
-        const userChoice = currentPlayer === 1? 'X': 'O';
-        let winner;
-        userChoices[clickedSquare] = userChoice;
-        this.setState({
-            userChoices
-        });
-        winner = this.checkWinner(userChoices, currentPlayer);
-        this.props.onPlay(currentPlayer, winner);
-    }
-
-    checkWinner(userChoices, currentPlayer) {
-        let winner = '';
-        let horizontalWin;
-        let verticalWin;
-        let diagonalWin;
-
-        for (let i=0; i<9; i=i+3) {
-            horizontalWin = userChoices.slice(i,i+2).join();
-            if (horizontalWin === 'XXX' || horizontalWin === 'OOO') {
-                winner = currentPlayer;
-            }
-        }
-        for (let i=0; i<3; i++) {
-            verticalWin = userChoices[i] + userChoices[i+3] + userChoices[i+6];
-            if (verticalWin === 'XXX' || verticalWin === 'OOO') {
-                winner = currentPlayer;
-            }
-            if (i===0) {
-                diagonalWin = userChoices[i] + userChoices[i+4] + userChoices[i+8];
-                if (diagonalWin === 'XXX' || diagonalWin === 'OOO') {
-                    winner = currentPlayer;
-                }
-            }
-            if (i===2) {
-                diagonalWin = userChoices[i] + userChoices[i+2] + userChoices[i+4];
-                if (diagonalWin === 'XXX' || diagonalWin === 'OOO') {
-                    winner = currentPlayer;
-                }
-            }
-        }
-        const isDraw = winner === '' && _.every(userChoices, (choice) => {
-                return choice !== '';
-            });
-        return isDraw? -1 : winner;
     }
 
     getGrid(newGame, currentPlayer, winner) {
-        let userChoices = this.state.userChoices;
+        let boardState = this.props.boardState;
 
         let squares = [];
         let square;
         let userChoice;
         let disable;
 
-        if (newGame) {
-            userChoices = ['', '', '', '', '', '', '', '', ''];
-        }
-
         for (let i = 0; i < 9; i++) {
-            userChoice = userChoices[i];
+            userChoice = boardState[i];
 
             disable = winner || userChoice? true : false;
 
-            const onSquareClick = this.onSquareClick.bind(this, currentPlayer, userChoices, i);
+            const onSquareClick = this.props.onPlay.bind(this, currentPlayer, i, boardState);
 
             if (i % 3 === 0) {
                 square = (

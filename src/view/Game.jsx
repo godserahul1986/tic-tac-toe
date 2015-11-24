@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import _ from 'underscore';
 
 import Grid from './Grid.jsx';
 import Notification from './Notification.jsx';
+
+import CONST from '../util/CONSTANTS.js';
 
 import '../styles/game.scss';
 
@@ -14,22 +17,32 @@ class Game extends Component {
             msg: 'Click on New Game to begin',
             newGame: true,
             currentPlayer: 1,
-            winner: ''
+            winner: '',
+            boardState: _.clone(CONST.NEW_GAME_BOARD_STATE)
+
         }
     }
 
     handleButtonClick() {
         const msg = 'Click on New Game to begin';
+        const boardState = _.clone(CONST.NEW_GAME_BOARD_STATE);
         this.setState({
             newGame: true,
             winner: '',
-            msg
+            msg,
+            boardState
         })
     }
 
-    onPlay(lastPlayed, winner) {
+    onPlay(lastPlayed, clickedSquare, boardState) {
+        const userChoice = lastPlayed === 1? 'X': 'O';
+
         let currentPlayer;
         let msg;
+        let winner;
+
+        boardState[clickedSquare] = userChoice;
+        winner = this.checkWinner(boardState, lastPlayed);
 
         if (winner === '') {
             if (lastPlayed === 1) {
@@ -43,22 +56,60 @@ class Game extends Component {
             this.setState({
                 msg,
                 currentPlayer,
-                newGame: false
+                newGame: false,
+                boardState
             })
         } else if (winner === -1) {
             msg = 'Match draw.';
             this.setState({
                 msg,
-                winner: lastPlayed
+                winner: lastPlayed,
+                boardState
             })
         } else {
             msg = `Player ${ lastPlayed } wins.`;
             this.setState({
                 msg,
-                winner: lastPlayed
+                winner: lastPlayed,
+                boardState
             })
         }
+    }
 
+    checkWinner(userChoices, currentPlayer) {
+        let winner = '';
+        let horizontalWin;
+        let verticalWin;
+        let diagonalWin;
+
+        for (let i=0; i<9; i=i+3) {
+            horizontalWin = userChoices.slice(i,i+2).join();
+            if (horizontalWin === 'XXX' || horizontalWin === 'OOO') {
+                winner = currentPlayer;
+            }
+        }
+        for (let i=0; i<3; i++) {
+            verticalWin = userChoices[i] + userChoices[i+3] + userChoices[i+6];
+            if (verticalWin === 'XXX' || verticalWin === 'OOO') {
+                winner = currentPlayer;
+            }
+            if (i===0) {
+                diagonalWin = userChoices[i] + userChoices[i+4] + userChoices[i+8];
+                if (diagonalWin === 'XXX' || diagonalWin === 'OOO') {
+                    winner = currentPlayer;
+                }
+            }
+            if (i===2) {
+                diagonalWin = userChoices[i] + userChoices[i+2] + userChoices[i+4];
+                if (diagonalWin === 'XXX' || diagonalWin === 'OOO') {
+                    winner = currentPlayer;
+                }
+            }
+        }
+        const isDraw = winner === '' && _.every(userChoices, (choice) => {
+                return choice !== '';
+            });
+        return isDraw? -1 : winner;
     }
 
     render() {
@@ -66,6 +117,7 @@ class Game extends Component {
         const newGame = this.state.newGame;
         const winner = this.state.winner;
         const currentPlayer = this.state.currentPlayer;
+        const boardState = this.state.boardState;
 
         const handleButtonClick = this.handleButtonClick.bind(this);
         const onPlay = this.onPlay.bind(this);
@@ -73,7 +125,7 @@ class Game extends Component {
         return (
             <div className="game">
                 <Notification msg={ msg }/>
-                <Grid newGame={ newGame } winner={ winner } currentPlayer={ currentPlayer } onPlay={ onPlay }/>
+                <Grid newGame={ newGame } winner={ winner } currentPlayer={ currentPlayer } boardState={ boardState } onPlay={ onPlay }/>
                 <button className="btn-new-game" onClick={ handleButtonClick }> New Game </button>
             </div>
         );
