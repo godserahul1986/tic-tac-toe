@@ -92,6 +92,7 @@
         border-bottom: 3px dotted #000088;
 
         &.win {
+            transition: width 1s;
             width: 100%;
         }
 

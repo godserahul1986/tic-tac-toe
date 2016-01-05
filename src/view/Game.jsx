@@ -39,11 +39,10 @@ class Game extends Component {
 
         let currentPlayer;
         let msg;
-        let winner;
 
         boardState[clickedSquare] = userChoice;
 
-        winner = this.checkWinner(boardState, lastPlayed);
+        const { winner, winCondition } = this.checkWinner(boardState, lastPlayed);
 
         if (winner === '') {
             if (lastPlayed === 1) {
@@ -72,7 +71,8 @@ class Game extends Component {
             this.setState({
                 msg,
                 winner: lastPlayed,
-                boardState
+                boardState,
+                winCondition
             })
         }
     }
@@ -82,35 +82,55 @@ class Game extends Component {
         let horizontalWin;
         let verticalWin;
         let diagonalWin;
+        let winCondition;
 
         for (let i=0; i<9; i=i+3) {
             horizontalWin = boardState.slice(i,i+3).join('');
             if (horizontalWin === 'XXX' || horizontalWin === 'OOO') {
                 winner = currentPlayer;
+                if (i === 0) {
+                    winCondition = 'first-row';
+                } else if (i === 3) {
+                    winCondition = 'second-row';
+                } else if (i === 6) {
+                    winCondition = 'third-row';
+                }
             }
         }
         for (let i=0; i<3; i++) {
             verticalWin = boardState[i] + boardState[i+3] + boardState[i+6];
             if (verticalWin === 'XXX' || verticalWin === 'OOO') {
                 winner = currentPlayer;
+                if (i === 0) {
+                    winCondition = 'first-column';
+                } else if (i === 1) {
+                    winCondition = 'second-column';
+                } else if (i === 2) {
+                    winCondition = 'third-column';
+                }
             }
             if (i===0) {
                 diagonalWin = boardState[i] + boardState[i+4] + boardState[i+8];
                 if (diagonalWin === 'XXX' || diagonalWin === 'OOO') {
                     winner = currentPlayer;
+                    winCondition = 'left-diagonal';
                 }
             }
             if (i===2) {
                 diagonalWin = boardState[i] + boardState[i+2] + boardState[i+4];
                 if (diagonalWin === 'XXX' || diagonalWin === 'OOO') {
                     winner = currentPlayer;
+                    winCondition = 'right-diagonal';
                 }
             }
         }
         const isDraw = winner === '' && _.every(boardState, (choice) => {
                 return choice !== '';
             });
-        return isDraw? -1 : winner;
+        return {
+            winner: isDraw? -1 : winner,
+            winCondition
+        };
     }
 
     render() {
@@ -119,6 +139,7 @@ class Game extends Component {
         const winner = this.state.winner;
         const currentPlayer = this.state.currentPlayer;
         const boardState = this.state.boardState;
+        const winCondition = this.state.winCondition;
 
         const handleButtonClick = this.handleButtonClick.bind(this);
         const onPlay = this.onPlay.bind(this);
@@ -126,7 +147,7 @@ class Game extends Component {
         return (
             <div className="game">
                 <Notification msg={ msg }/>
-                <Grid newGame={ newGame } winner={ winner } currentPlayer={ currentPlayer } boardState={ boardState } onPlay={ onPlay }/>
+                <Grid newGame={ newGame } winner={ winner } winCondition={ winCondition } currentPlayer={ currentPlayer } boardState={ boardState } onPlay={ onPlay }/>
                 <button className="btn-new-game" onClick={ handleButtonClick }> New Game </button>
             </div>
         );

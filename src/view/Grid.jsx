@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 
 import Square from './Square.jsx';
 
@@ -45,6 +46,7 @@ class Grid extends Component {
         const currentPlayer = this.props.currentPlayer;
         const winner = this.props.winner;
         const squares = this.getGrid(currentPlayer, winner);
+        const winCondition = this.props.winCondition;
 
         return (
             <div className="grid">
@@ -54,8 +56,8 @@ class Grid extends Component {
                     <div className="grid-border-3" />
                     <div className="grid-border-4" />
                 </div>
-                <div className="strike-winner">
-                    <div className="strikeout" />
+                <div className={ classNames('strike-winner', winCondition ) }>
+                    <div className={ classNames('strikeout', { 'win': winner && winCondition } ) } />
                 </div>
                 { squares }
             </div>
