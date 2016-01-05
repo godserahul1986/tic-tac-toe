@@ -1,7 +1,10 @@
 .notification {
     text-align: center;
-    border: 1px solid;
     padding: 5px;
     margin: 20px auto 0;
-    width: 300px;
+    width: 100%;
+    height: 60px;
+    background-color: #ba89b6;
+    line-height: 60px;
+    font-size: 2em;
 }

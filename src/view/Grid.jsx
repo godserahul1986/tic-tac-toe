@@ -11,7 +11,7 @@ class Grid extends Component {
         super(...args);
     }
 
-    getGrid(newGame, currentPlayer, winner) {
+    getGrid(currentPlayer, winner) {
         let boardState = this.props.boardState;
 
         let squares = [];
@@ -44,16 +44,18 @@ class Grid extends Component {
     render() {
         const currentPlayer = this.props.currentPlayer;
         const winner = this.props.winner;
-        const newGame = this.props.newGame;
-        const squares = this.getGrid(newGame, currentPlayer, winner);
+        const squares = this.getGrid(currentPlayer, winner);
 
         return (
             <div className="grid">
                 <div className="grid-borders">
-                    <div className="grid-border-1"></div>
-                    <div className="grid-border-2"></div>
-                    <div className="grid-border-3"></div>
-                    <div className="grid-border-4"></div>
+                    <div className="grid-border-1" />
+                    <div className="grid-border-2" />
+                    <div className="grid-border-3" />
+                    <div className="grid-border-4" />
+                </div>
+                <div className="strike-winner">
+                    <div className="strikeout" />
                 </div>
                 { squares }
             </div>

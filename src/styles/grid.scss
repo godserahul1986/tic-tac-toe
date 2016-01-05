@@ -39,4 +39,62 @@
         left: 0;
         top: 118px;
     }
+
+    .strike-winner {
+        position: relative;
+        width: 100%;
+        top: 0;
+        left: 0;
+
+        &.first-column {
+            transform: rotate(90deg);
+            left: -60px;
+            top: 90px;
+        }
+        &.second-column {
+            transform: rotate(90deg);
+            left: 0px;
+            top: 90px;
+        }
+        &.third-column {
+            transform: rotate(90deg);
+            left: 60px;
+            top: 90px;
+        }
+        &.first-row {
+            top: 30px;
+        }
+        &.second-row {
+            top: 90px;
+        }
+        &.third-row {
+            top: 150px;
+        }
+        &.left-diagonal {
+            transform: rotate(45deg);
+            left: -30px;
+            top: 90px;
+            width: 135%;
+        }
+        &.right-diagonal {
+            transform: rotate(135deg);
+            left: -31px;
+            top: 90px;
+            width: 135%;
+        }
+    }
+
+    .strikeout {
+        position: absolute;
+        width: 0;
+        left: 0;
+        top: 0;
+        border-bottom: 3px dotted #000088;
+
+        &.win {
+            width: 100%;
+        }
+
+    }
+
 }
