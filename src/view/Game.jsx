@@ -42,6 +42,7 @@ class Game extends Component {
         let winner;
 
         boardState[clickedSquare] = userChoice;
+
         winner = this.checkWinner(boardState, lastPlayed);
 
         if (winner === '') {
@@ -76,37 +77,37 @@ class Game extends Component {
         }
     }
 
-    checkWinner(userChoices, currentPlayer) {
+    checkWinner(boardState, currentPlayer) {
         let winner = '';
         let horizontalWin;
         let verticalWin;
         let diagonalWin;
 
         for (let i=0; i<9; i=i+3) {
-            horizontalWin = userChoices.slice(i,i+2).join();
+            horizontalWin = boardState.slice(i,i+3).join('');
             if (horizontalWin === 'XXX' || horizontalWin === 'OOO') {
                 winner = currentPlayer;
             }
         }
         for (let i=0; i<3; i++) {
-            verticalWin = userChoices[i] + userChoices[i+3] + userChoices[i+6];
+            verticalWin = boardState[i] + boardState[i+3] + boardState[i+6];
             if (verticalWin === 'XXX' || verticalWin === 'OOO') {
                 winner = currentPlayer;
             }
             if (i===0) {
-                diagonalWin = userChoices[i] + userChoices[i+4] + userChoices[i+8];
+                diagonalWin = boardState[i] + boardState[i+4] + boardState[i+8];
                 if (diagonalWin === 'XXX' || diagonalWin === 'OOO') {
                     winner = currentPlayer;
                 }
             }
             if (i===2) {
-                diagonalWin = userChoices[i] + userChoices[i+2] + userChoices[i+4];
+                diagonalWin = boardState[i] + boardState[i+2] + boardState[i+4];
                 if (diagonalWin === 'XXX' || diagonalWin === 'OOO') {
                     winner = currentPlayer;
                 }
             }
         }
-        const isDraw = winner === '' && _.every(userChoices, (choice) => {
+        const isDraw = winner === '' && _.every(boardState, (choice) => {
                 return choice !== '';
             });
         return isDraw? -1 : winner;

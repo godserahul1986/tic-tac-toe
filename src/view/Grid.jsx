@@ -49,6 +49,12 @@ class Grid extends Component {
 
         return (
             <div className="grid">
+                <div className="grid-borders">
+                    <div className="grid-border-1"></div>
+                    <div className="grid-border-2"></div>
+                    <div className="grid-border-3"></div>
+                    <div className="grid-border-4"></div>
+                </div>
                 { squares }
             </div>
         );

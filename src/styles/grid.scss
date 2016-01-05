@@ -1,5 +1,42 @@
 .grid {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     margin: 50px auto 0;
+
+    .grid-borders {
+        position: relative;
+        width: 100%;
+    }
+
+    .grid-border-1 {
+        border-left: 2px solid #000000;
+        height: 180px;
+        position: absolute;
+        left: 58px;
+        top: 0;
+    }
+
+    .grid-border-2 {
+        border-left: 2px solid #000000;
+        height: 180px;
+        position: absolute;
+        left: 118px;
+        top: 0;
+    }
+
+    .grid-border-3 {
+        border-bottom: 2px solid #000000;
+        width: 180px;
+        position: absolute;
+        left: 0;
+        top: 58px;
+    }
+
+    .grid-border-4 {
+        border-bottom: 2px solid #000000;
+        width: 180px;
+        position: absolute;
+        left: 0;
+        top: 118px;
+    }
 }
