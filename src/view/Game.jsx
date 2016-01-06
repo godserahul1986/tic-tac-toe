@@ -24,11 +24,12 @@ class Game extends Component {
     }
 
     handleButtonClick() {
-        const msg = 'Click on New Game to begin';
+        const msg = 'Lets go Player 1';
         const boardState = _.clone(CONST.NEW_GAME_BOARD_STATE);
         this.setState({
             newGame: true,
             winner: '',
+            currentPlayer: 1,
             msg,
             boardState
         })
