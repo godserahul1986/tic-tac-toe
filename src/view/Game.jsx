@@ -65,7 +65,8 @@ class Game extends Component {
             this.setState({
                 msg,
                 winner: lastPlayed,
-                boardState
+                boardState,
+                winCondition
             })
         } else {
             msg = `Player ${ lastPlayed } wins.`;
