@@ -1,7 +1,7 @@
-var CONST = {
+const GAME_CONSTANTS = {
     NEW_GAME_BOARD_STATE: ['', '', '', '', '', '', '', '', ''],
     USER_CHOICE_X: 'X',
     USER_CHOICE_Y: 'Y'
 };
 
-module.exports = CONST;
+export default GAME_CONSTANTS;

@@ -1,4 +1,4 @@
-const config = {
+const devConfig = {
 	context: __dirname + "/src",
 	entry: __dirname + '/src/index.jsx',
 	output: {
@@ -21,4 +21,4 @@ const config = {
 	}
 };
 
-module.exports = config;
+export default devConfig;

@@ -5,7 +5,7 @@ import _ from 'underscore';
 import Grid from './Grid.jsx';
 import Notification from './Notification.jsx';
 
-import CONST from '../util/CONSTANTS.js';
+import GAME_CONSTANTS from '../util/GAME_CONSTANTS.js';
 
 import '../styles/game.scss';
 
@@ -18,14 +18,14 @@ class Game extends Component {
             newGame: true,
             currentPlayer: 1,
             winner: '',
-            boardState: _.clone(CONST.NEW_GAME_BOARD_STATE)
+            boardState: _.clone(GAME_CONSTANTS.NEW_GAME_BOARD_STATE)
 
         }
     }
 
     handleButtonClick() {
         const msg = 'Lets go Player 1';
-        const boardState = _.clone(CONST.NEW_GAME_BOARD_STATE);
+        const boardState = _.clone(GAME_CONSTANTS.NEW_GAME_BOARD_STATE);
         this.setState({
             newGame: true,
             winner: '',
