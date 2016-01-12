@@ -61,7 +61,7 @@ gulp.task('prod', (done) => {
     });
 });
 
-gulp.task('serve', ['prod'], () => {
+gulp.task('default', ['prod'], () => {
     connect.server({
         port: portNumber
     });

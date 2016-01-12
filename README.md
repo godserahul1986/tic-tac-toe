@@ -6,7 +6,9 @@ Play the [demo](http://godserahul1986.github.io/tic-tac-toe/)
 
 ## Installation
 `npm install`
-`gulp serve`
+
+
+`gulp `
 
 #### Development mode
 `gulp dev`
