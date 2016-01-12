@@ -1,8 +1,12 @@
-const devConfig = {
-	context: __dirname + "/src",
-	entry: __dirname + '/src/index.jsx',
-	output: {
-		path: __dirname + "/build",
+import webPack, { HotModuleReplacementPlugin, NoErrorsPlugin } from 'webpack';
+
+export default {
+    entry: [
+        __dirname + '/src/index.jsx'
+    ],
+    output: {
+        publicPath: '/build/',
+        path: __dirname + "/build",
 		filename: "build.js"
 	},
 	module: {
@@ -10,7 +14,10 @@ const devConfig = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
-                loaders: [ 'babel-loader?optional[]=runtime&stage=0' ]
+                loaders: [
+                    'react-hot',
+                    'babel-loader?optional[]=runtime&stage=0'
+                ]
             },
             {
                 test: /\.scss$/,
@@ -18,7 +25,9 @@ const devConfig = {
                 loaders: [ 'style', 'css', 'sass' ]
             }
 		]
-	}
+	},
+    plugins: [
+        new webPack.HotModuleReplacementPlugin(),
+        new webPack.NoErrorsPlugin()
+    ]
 };
-
-export default devConfig;

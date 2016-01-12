@@ -1,5 +1,7 @@
+/*eslint-disable no-unused-vars*/
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+/*eslint-disable no-unused-vars*/
 
 import '../styles/square.scss';
 

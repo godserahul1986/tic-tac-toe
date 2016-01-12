@@ -1,8 +1,9 @@
+/*eslint-disable no-unused-vars*/
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import classNames from 'classnames';
-
 import Square from './Square.jsx';
+/*eslint-enable no-unused-vars*/
+import classNames from 'classnames';
 
 import '../styles/grid.scss';
 

@@ -1,9 +1,10 @@
+/*eslint-disable no-unused-vars*/
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import _ from 'underscore';
-
 import Grid from './Grid.jsx';
 import Notification from './Notification.jsx';
+/*eslint-enable no-unused-vars*/
+import _ from 'underscore';
 
 import GAME_CONSTANTS from '../util/GAME_CONSTANTS.js';
 
@@ -19,7 +20,6 @@ class Game extends Component {
             currentPlayer: 1,
             winner: '',
             boardState: _.clone(GAME_CONSTANTS.NEW_GAME_BOARD_STATE)
-
         }
     }
 
@@ -150,7 +150,7 @@ class Game extends Component {
             <div className="game">
                 <Notification msg={ msg }/>
                 <Grid newGame={ newGame } winner={ winner } winCondition={ winCondition } currentPlayer={ currentPlayer } boardState={ boardState } onPlay={ onPlay }/>
-                <button className="btn-new-game" onClick={ handleButtonClick }> New Game </button>
+                <button className="btn-new-game" onClick={ handleButtonClick }> Start Game </button>
             </div>
         );
     }

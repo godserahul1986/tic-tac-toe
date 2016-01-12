@@ -1,0 +1,10 @@
+{
+  "parser": "babel-eslint",
+  "ecmaScript": {
+    "modules": true
+  },
+  "rules": {
+    "no-unused-vars": 2,
+    "no-console": 2
+  }
+}
