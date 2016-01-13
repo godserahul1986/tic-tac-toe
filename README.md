@@ -10,6 +10,12 @@ Play the [demo](http://godserahul1986.github.io/tic-tac-toe/)
 
 `gulp `
 
+
+Open in browser:
+
+
+[localhost:8555](localhost:8555)
+
 #### Development mode
 `gulp dev`
 
