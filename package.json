@@ -4,7 +4,8 @@
   "description": "Tic-tac-toe game made using React",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/gulp",
+    "develop": "./node_modules/.bin/gulp dev"
   },
   "author": "",
   "license": "ISC",
@@ -33,7 +34,6 @@
     "webpack": "^1.12.6",
     "webpack-dev-server": "^1.14.0",
     "babel-preset-stage-0": "^6.3.13",
-    "react": "^0.14.6",
     "babel-preset-react": "^6.3.13"
   }
 }
